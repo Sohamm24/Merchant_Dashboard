@@ -1,0 +1,52 @@
+.offer-service__upper-box {
+  background-color: #7e5170;
+  height:50px;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+
+.offer-service__form-container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.offer-service__form-group {
+  margin-bottom: 15px;
+}
+
+.offer-service__form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.offer-service__form-group input,
+.offer-service__form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.offer-service__form-group textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.offer-service__button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.offer-service__button:hover {
+  background-color: #0056b3;
+}

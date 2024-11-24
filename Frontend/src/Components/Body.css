@@ -1,0 +1,219 @@
+body{
+  font-family: Arial, sans-serif;
+}
+.img_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center; 
+    background-color: #ffffff;
+    height: 670px;;
+  }
+  
+  .img_left {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    margin-top: 20px; /* Add top margin */
+    overflow: hidden; /* Prevent overflow of content */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.img_left img {
+    max-width: 100%; 
+    height: auto;
+    object-fit: cover; 
+    transition: transform 0.2s ease; 
+}
+
+  
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin: 20px; 
+  color: #333333;
+  width:560px;
+  align-items: center;
+}
+
+.text-right {
+  margin-bottom: 10px;
+  text-align:right;  
+  justify-content:left;
+  align-items: center;
+  font-size:50px;
+}
+
+.button_container {
+  margin-top: 10px; 
+  justify-content: center;
+  border: solid black 3px;
+  border-radius:15px;
+}
+  
+.right_button {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight:bolder;
+    border: none;
+    cursor: pointer;
+    border-radius:15px;
+    width:300px;
+  }
+  
+  .left_button:hover, .right_button:hover {
+    background-color: #7e5170; 
+    color: white;
+  }
+  .status_container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between; 
+    background-color: rgb(221, 221, 16); 
+    height: 300px;
+    width: 80%;
+    margin: 50px auto;
+    border-top-right-radius: 80px;
+    border-bottom-left-radius: 80px;
+    padding: 0 20px; /* Optional: Add some padding for better spacing */
+    box-sizing: border-box; /* Include padding and border in width and height */
+  }
+  
+  .status_heading {
+    flex: 1;
+    margin: auto; /* Center content vertically */
+    padding-left: 40px;
+    max-width: 600px;
+  }
+  
+  .status_buttons {
+    display: flex;
+    flex-direction: column; /* Stacks buttons vertically */
+    align-items: center; /* Centers buttons horizontally within the container */
+    gap: 20px; /* Space between buttons */
+    flex: 1;
+    margin-top:50px;
+  }
+  
+  .status_buttons button {
+    font-size: 16px; /* Increase the text size */
+    padding: 20px; /* Adjust the padding to increase button size */
+    width: 100%; /* Make buttons span the full width of the .status_buttons container */
+    max-width: 300px; /* Restrict maximum width of buttons */
+    height: 50px; /* Set the height of buttons */
+    border: solid black 3px; /* Remove default border */
+    border-radius: 15px; /* Rounded corners for buttons */
+    background-color: #ffffff; /* Button background color */
+    color: #000000; /* Button text color */
+    font-weight: bolder;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    box-sizing: border-box; /* Ensure padding and border are included in width and height */
+  }
+  
+  .status_buttons button:hover {
+    background-color: #7e5170; /* Change background color on hover */
+    color:white;
+  }
+  .modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure modal is on top */
+    border:solid 4px #7e5170;
+  }
+  
+  .modal_content {
+    background: #fff; /* White background for modal */
+    padding: 20px;
+    border-radius: 40px;
+    width: 80%;
+    max-width: 250px;
+    position: relative;
+    border:solid 7px #7e5170;
+  }
+  
+  .close_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: rgb(255, 255, 255); /* Red background */
+    color: #080808; /* White text */
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+  
+  .m1, .m2 {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for effects */
+}
+
+.m1:hover, .m2:hover {
+    background-color: #7e5170; /* Light gray background on hover */
+    transform: scale(1.02); /* Slightly scale up on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    color: #fff;
+}
+.info_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.info_image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.info_text {
+  text-align: center;
+  width:350px;
+}
+.info_text p {
+  font-size: 24px;
+  color: #333;
+}
+
+.info_buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vertical_button {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  font-size:20px;
+  border: solid black 3px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width:300px;
+}
+
+.vertical_button:hover {
+  background-color: #7e5170;
+  color: #ffffff;
+}
