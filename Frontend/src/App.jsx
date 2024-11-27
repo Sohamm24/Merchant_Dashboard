@@ -1,45 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Body from './Components/Body';
-import SellProducts from './Components/SellProducts';
-import OfferService from './Components/OfferService';
 import Footer from './Components/Footer';
 import './index.css';
-import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
+import SellProducts from './Components/SellProducts';
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+import Home from './pages/homepage';
+import Dashboardpage from './pages/Dashboardpage';
 
-  // Check for token in localStorage to see if the user is logged in
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+import { 
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link
+ } from 'react-router-dom';
 
+
+ const router=createBrowserRouter([
+  {
+    path:'/',
+    element:<Home/>
+  },
+  {
+    path:'/dashboard',
+    element:<Dashboardpage/>
+  },
+  {
+    path:'/addproduct',
+    element:<SellProducts/>
+  }
+ ])
+
+export default function App() {
   return (
-    <Router>
-      <Navbar />
-      
-      {/* Conditional Rendering */}
-      {isLoggedIn ? (
-        <>
-          <Dashboard />
-          {/* Footer is always shown */}
-        </>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Body />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/dashboard" element={<Dashboard/>}/>
-        </Routes>
-      )}
-      <Footer/>
-    </Router>
+    <div className="App">
+            <RouterProvider router={router} />
+    </div>
   );
 }
 
-export default App;

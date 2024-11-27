@@ -1,80 +1,58 @@
+.Container {
+  display: flex;
+  height:100vh;
+  width:100vw;
+}
 
+.left {
+  flex: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#ffffff;
+}
 
-.sell-products__upper-box {
-    height: 50px;
-    width: 100%;
-    background-color: #7e5170;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-  
-  .sell-products__upper-box h2 {
-    color: white;
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .sell-products__form-container {
-    margin: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-  }
-  
-  .sell-products__form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .sell-products__form-group {
-    margin-bottom: 15px;
-  }
-  
-  .sell-products__form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .sell-products__form-group input,
-  .sell-products__form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .sell-products__form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  .sell-products__form-group input[type="file"] {
-    padding: 0;
-  }
-  
-  .sell-products__button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sell-products__button:hover {
-    background-color: #0056b3;
-  }
-  
+.tright {
+  position: relative; 
+  top:0;
+  right:0;
+  bottom:0;
+  padding-top:200px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height:330px;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-buttons{
+  font-size: 16px;
+  padding: 30px;
+  margin-bottom:20px;
+  width: 100%;
+  max-width:450px;
+  height:30px;
+  border:3px solid black;
+  border-radius: 15px;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight:bold;
+  cursor: pointer;
+  transition:background-color 0.3s ease;
+  text-align:center;
+}
+
+.status-buttons:hover {
+  background-color: #7e5170;
+  color: white;
+}
+
+.back_button{
+  position:absolute;
+  top:0;
+  left:0;
+  margin-top:20px;
+  margin-left:20px;
+  padding-top:30px auto;
+}

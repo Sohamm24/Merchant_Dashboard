@@ -1,7 +1,7 @@
 import './Login.css';
 import React, { useEffect, useState } from 'react';
 import Dashboard from './Dashboard';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 
 export default function Login() {
@@ -23,7 +23,7 @@ export default function Login() {
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  const navigate = useNavigate(); // Create a navigate instance
+  const navigate = useNavigate(); 
 
 
   useEffect(() => {

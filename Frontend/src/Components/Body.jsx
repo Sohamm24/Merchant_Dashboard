@@ -33,7 +33,7 @@ export default function Body() {
           <img src={Group36} alt="Image" />
         </div>
         <div className="right">
-          <h2 className="text-right">Expand your reach by selling products and services to NRIs through our platform, designed to enhance visibility and drive growth</h2>
+          <h2 className="text-right">Manage your Inventory/Warehouse for your Business efficiently and get frequent Analysis of Merchandise</h2>
           <div className="button_container">
             <button className="right_button" onClick={handleLoginClick}>Login</button>
             {isModalOpen && (
