@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './dashboard.css';
 import IndiaPost from "../assets/IndiaPost.png";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend ,BarElement, CategoryScale, LinearScale,} from "chart.js";
