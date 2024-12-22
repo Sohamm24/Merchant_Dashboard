@@ -111,6 +111,29 @@ export default function Login() {
           {isRegistering ? (
             <div>
               <h4 className="login-header">Register</h4>
+
+              <button style={{
+               display:'flex',
+               marginBottom:'20px',
+               gap:'20px',
+               padding: '10px 20px',
+               backgroundColor: '#ffffff',
+               textAlign: 'center',
+               color: 'rgb(0, 0, 0)',
+               fontWeight: 'bolder',
+               border: 'solid black 2px',
+               cursor: 'pointer',
+               borderRadius: '15px',
+               width: '300px'
+               }}>
+              <img
+               src="https://developers.google.com/identity/images/g-logo.png"
+               alt="Google Logo"
+               style={{ width: '20px', height: '20px',display:'flex'}}
+              />
+              <div style={{fontSize:'10px',display:'flex'}}>Sign Up with Google</div>
+              </button>
+
               <form className="login-form" onSubmit={handleRegisterSubmit}>
                 <div className="form-group">
                   <label htmlFor="reg-username">Username</label>
@@ -159,6 +182,29 @@ export default function Login() {
           ) : (
             <div>
               <h4 className="login-header">Log In</h4>
+ 
+              <button style={{
+               display:'flex',
+               marginBottom:'20px',
+               gap:'20px',
+               padding: '10px 20px',
+               backgroundColor: '#ffffff',
+               textAlign: 'center',
+               color: 'rgb(0, 0, 0)',
+               fontWeight: 'bolder',
+               border: 'solid black 2px',
+               cursor: 'pointer',
+               borderRadius: '15px',
+               width: '300px'
+               }}>
+              <img
+               src="https://developers.google.com/identity/images/g-logo.png"
+               alt="Google Logo"
+               style={{ width: '20px', height: '20px',display:'flex'}}
+              />
+              <div style={{fontSize:'10px',display:'flex'}}>Sign Up with Google</div>
+              </button>
+
               <form className="login-form" onSubmit={handleLoginSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>

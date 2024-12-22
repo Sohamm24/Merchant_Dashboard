@@ -32,7 +32,6 @@ const MerchandiseSchema= new Schema({
         },
         minQuantity: {
              type: Number,
-             required: true
              },
         minQuantityEcomm: { 
             type: Number 
