@@ -39,7 +39,7 @@ export default function Login() {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch('http://localhost:5000/auth/local-login',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +112,9 @@ export default function Login() {
             <div>
               <h4 className="login-header">Register</h4>
 
-              <button style={{
+              <button  onClick={() => {
+               window.location.href = 'http://localhost:5000/auth/google-login';
+               }} style={{
                display:'flex',
                marginBottom:'20px',
                gap:'20px',
@@ -183,7 +185,10 @@ export default function Login() {
             <div>
               <h4 className="login-header">Log In</h4>
  
-              <button style={{
+              <button  onClick={() => {
+               window.location.href = 'http://localhost:5000/auth/google-login';
+               }}
+               style={{
                display:'flex',
                marginBottom:'20px',
                gap:'20px',

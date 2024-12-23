@@ -12,13 +12,13 @@ const UserSchema = new Schema({
   },
   contact:{
     type: String,
-    required: true,
+    required:false,
     minlength: 10,
     maxlength: 10 
   },
   password: {
     type: String,
-    required: true
+    required:false
   }
 },{timestamps:true});
 
