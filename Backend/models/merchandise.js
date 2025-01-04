@@ -42,4 +42,4 @@ const MerchandiseSchema= new Schema({
              }
     }, { timestamps: true });
 
-    module.exports=mongoose.model("merchandise",MerchandiseSchema)
+    module.exports=mongoose.model("Merchandise",MerchandiseSchema)

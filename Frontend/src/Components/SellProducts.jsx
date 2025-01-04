@@ -38,9 +38,11 @@ const ProductForm = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(updatedFormData),
     });
+    console.log()
     const data = await response.json();
     if (data.success) {
       console.log('Added Product', data);

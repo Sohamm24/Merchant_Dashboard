@@ -10,15 +10,13 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  contact:{
-    type: String,
-    required:false,
-    minlength: 10,
-    maxlength: 10 
-  },
   password: {
-    type: String,
-    required:false
+    type: String
+  },
+  role: {
+     type: String, 
+     required: true,
+     default: 'customer'
   }
 },{timestamps:true});
 

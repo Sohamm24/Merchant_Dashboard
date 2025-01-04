@@ -1,10 +1,16 @@
 const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/user');  
 const bcrypt = require('bcrypt');
 
-// Local Strategy for username/password authentication
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET, 
+};
+
 passport.use('local', new LocalStrategy({
   usernameField: 'email',  // Field name for email in the login form
   passwordField: 'password'  // Field name for password
@@ -53,17 +59,40 @@ passport.use('google', new GoogleStrategy({
   }
 }));
 
+
+passport.use(new JwtStrategy(opts, async (jwtPayload, done) => {
+  try {
+      const user = await User.findById(jwtPayload.id);
+      if (user) {
+          return done(null, user);
+      } else {
+          return done(null, false);
+      }
+  } catch (error) {
+      return done(error, false);
+  }
+}));
+
 // Serialize and Deserialize user for session management
 passport.serializeUser((user, done) => {
-  done(null, user.id);  // Store user ID in the session
+  console.log("Serializing user:", user);
+  done(null,{id:user.id,role:user.role});  // Store user ID in the session
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (userData, done) => {
+  console.log("Deserializing user data:", userData);
   try {
-    const user = await User.findById(id);  // Find user by ID
-    done(null, user);  // Pass user object to the next middleware
-  } catch (error) {
-    done(error, false);  // Error handling if user not found
+    const user = await User.findById(userData.id);  // Use `userData.id` instead of `id`
+    if (!user) {
+      console.log("User not found in the database");
+      done(null, false);
+    } else {
+      console.log("Deserialized user:", user);
+      done(null, user); 
+    }
+  } catch (err) {
+    console.error("Error during deserialization:", err);
+    done(err, false);
   }
 });
 

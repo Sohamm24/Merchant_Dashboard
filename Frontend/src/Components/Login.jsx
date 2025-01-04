@@ -1,10 +1,9 @@
 import './Login.css';
 import React, { useEffect, useState } from 'react';
-import Dashboard from './Dashboard';
 import { useNavigate } from 'react-router-dom'; 
 
 
-export default function Login() {
+export default function Login({role}) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const [user, setUser] = useState(null);
@@ -12,13 +11,14 @@ export default function Login() {
   const [signupInfo, setSignupInfo] = useState({
     name: '',
     email: '',
-    contact:'',
-    password: ''
+    password: '',
+    role:role
   });
 
   const [loginInfo, setLoginInfo] = useState({
     email: '',
-    password: ''
+    password: '',
+    role:role
   });
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -47,15 +47,29 @@ export default function Login() {
         body: JSON.stringify(loginInfo),
       });
       const data = await response.json();
+      const token = data.token;
+      console.log('Token received:', token);
+      if (token) {
+        localStorage.setItem('token', token);
+        console.log('Token saved to localStorage');
+      } else {
+        console.log('No token found in the response');
+      }
       if (data.success) {
         console.log('Login successful', data);
-        localStorage.setItem('token', data.jwtToken);
+        const role =data.user.role; 
+        if (role === 'merchants') {
+          navigate('/Merchant');
+        } else if (role === 'customer') {
+          navigate('/Home');
+        } else {
+          navigate('/Management');
+        }
         localStorage.setItem('user', JSON.stringify({ name: data.name, email: data.email }));
         setIsLoggedIn(true);
         setUser({ name: data.name, email: data.email });
         setShowSuccessPopup(true); 
         setTimeout(() => setShowSuccessPopup(false), 3000);
-        navigate('/dashboard');
       } else {
         console.log('Login failed', data.message);
       }
@@ -76,7 +90,8 @@ export default function Login() {
       });
       const data = await response.json();
       if (data.success) {
-        console.log('Login successful', data);
+        console.log('Signin successful', data);
+        setIsRegistering(false)
       } else {
         console.log('Registration failed', data.message);
       }
@@ -85,6 +100,10 @@ export default function Login() {
     }
   };
 
+  const handleGoogleLogin= async () => {
+    window.location.href = 'http://localhost:5000/auth/google-login';
+  };
+  
   const handleSignOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -112,9 +131,8 @@ export default function Login() {
             <div>
               <h4 className="login-header">Register</h4>
 
-              <button  onClick={() => {
-               window.location.href = 'http://localhost:5000/auth/google-login';
-               }} style={{
+              <button onClick={handleGoogleLogin}
+               style={{
                display:'flex',
                marginBottom:'20px',
                gap:'20px',
@@ -155,16 +173,6 @@ export default function Login() {
                     placeholder="Enter your email"
                     value={signupInfo.email}
                     onChange={(e) => setSignupInfo({ ...signupInfo, email: e.target.value })}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contact">Contact</label>
-                  <input
-                    id="contact"
-                    type="number"
-                    placeholder="Enter your Mobile no."
-                    value={signupInfo.contact}
-                    onChange={(e) => setSignupInfo({ ...signupInfo, contact: e.target.value })}
                   />
                 </div>
                 <div className="form-group">

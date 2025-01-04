@@ -42,25 +42,26 @@ body{
   text-align:center;  
   justify-content:left;
   align-items: center;
-  font-size:50px;
+  font-size:30px;
 }
 
 .button_container {
-  margin-top: 10px; 
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap:10px; 
   justify-content: center;
-  border: solid black 3px;
   border-radius:15px;
 }
-  
-.right_button {
+.role-button {
     padding: 10px 20px;
     background-color: #ffffff;
     text-align: center;
     color: rgb(0, 0, 0);
-    font-weight:bolder;
-    border: none;
+    border: solid black 3px;
+    font-weight:bold;
     cursor: pointer;
-    border-radius:15px;
+    border-radius:10px;
     width:300px;
   }
   
@@ -68,56 +69,7 @@ body{
     background-color: #7e5170; 
     color: white;
   }
-  .status_container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between; 
-    background-color: #cf7fb6; 
-    height: 320px;
-    width:500px;
-    margin-left:70px;
-    border-top-right-radius: 80px;
-    border-bottom-left-radius: 80px;
-    padding: 0 20px; 
-    box-sizing: border-box; 
-  }
   
-  .status_heading {
-    flex: 1;
-    margin: auto; 
-    padding-left: 40px;
-    max-width: 600px;
-  }
-  
-  .status_buttons {
-    display: flex;
-    flex-direction: column; /* Stacks buttons vertically */
-    align-items: center; /* Centers buttons horizontally within the container */
-    gap: 20px; /* Space between buttons */
-    flex: 1;
-    margin-top:50px;
-  }
-  
-  .status_buttons button {
-    font-size: 16px; /* Increase the text size */
-    padding: 20px; /* Adjust the padding to increase button size */
-    width: 100%; /* Make buttons span the full width of the .status_buttons container */
-    max-width: 300px; /* Restrict maximum width of buttons */
-    height: 50px; /* Set the height of buttons */
-    border: solid black 3px; /* Remove default border */
-    border-radius: 15px; /* Rounded corners for buttons */
-    background-color: #ffffff; /* Button background color */
-    color: #000000; /* Button text color */
-    font-weight: bolder;
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-    box-sizing: border-box; /* Ensure padding and border are included in width and height */
-  }
-  
-  .status_buttons button:hover {
-    background-color: #7e5170; /* Change background color on hover */
-    color:white;
-  }
   .modal_overlay {
     position: fixed;
     top: 0;

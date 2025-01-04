@@ -1,17 +1,33 @@
 const userModel=require('../models/user.js')
+const custModel=require('../models/customers.js')
+const sellModel=require('../models/sellers.js')
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt') 
 
 const signin=async(req,res)=>{
     try{
-        const {name,email,contact,password}=req.body
+        const {name,email,password,role}=req.body
         const userName=await userModel.findOne({email})
         if(userName){
             return res.status(409).json({message:'User already exists', success: false})
         }
-        const userNew=new userModel({name,email,contact,password})
+        const userNew=new userModel({name,email,password,role})
         userNew.password=await bcrypt.hash(password,10)
         await userNew.save()
+
+        if(userNew.role==='customer'){
+            const custNew=new custModel({
+                userId: userNew._id
+            })
+            await custNew.save()
+        }
+        if(userNew.role==='merchants'){
+            const sellNew=new sellModel({
+                userId: userNew._id 
+            })
+            await sellNew.save()
+        }
+      
         res.status(201).json({
             message:'Signed in successfully',
             success:true,

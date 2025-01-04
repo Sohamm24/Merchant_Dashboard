@@ -5,9 +5,11 @@ import Footer from './Components/Footer';
 import './index.css';
 import Login from './Components/Login';
 import SellProducts from './Components/SellProducts';
-
+import CustomerPage from './pages/Customerpage';
+import ManagementPage from './pages/ManagementPage';
 import Home from './pages/homepage';
-import Dashboardpage from './pages/Dashboardpage';
+import MerchantDashboardPage from './pages/MerchantDashboardPage';
+import ProfilePage from './Components/Profile';
 
 import { 
   createBrowserRouter,
@@ -16,19 +18,30 @@ import {
   Link
  } from 'react-router-dom';
 
-
  const router=createBrowserRouter([
   {
     path:'/',
     element:<Home/>
   },
   {
-    path:'/dashboard',
-    element:<Dashboardpage/>
+    path:'/Merchant',
+    element:<MerchantDashboardPage/>
   },
   {
-    path:'/addproduct',
+    path:'/Merchant/addproduct',
     element:<SellProducts/>
+  },
+  {
+    path:'/Home',
+    element:<CustomerPage/>
+  },
+  {
+    path:'/Management',
+    element:<ManagementPage/>
+  },
+  {
+    path:'/Profile',
+    element:<ProfilePage/>
   }
  ])
 

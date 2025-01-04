@@ -6,7 +6,7 @@ const signinValidation=(req,res,next)=>{
         name:Joi.string().min(3).max(100).required(),
         email:Joi.string().email().required(),
         password:Joi.string().min(4).max(15).required(),
-        contact: Joi.string().pattern(/^[0-9]{10}$/).required()
+        role:Joi.string().required()
     })
     const {error}=schema.validate(req.body);
     if(error){

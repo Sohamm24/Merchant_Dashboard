@@ -7,24 +7,15 @@ import Login from './Login.jsx'
 export default function Body() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLoginClick = () => {
+  const handleLoginClick = (event) => {
     setIsModalOpen(true);
+    const selectedRole=event.target.dataset.role;
+    setRole(selectedRole);
   };
 
-  const navigate = useNavigate(); // Hook to navigate
-
-  const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleSellProducts = () => {
-    closeModal(); // Close the modal
-    navigate('/sell-products'); // Navigate to SellProducts page
-  };
-
-  const handleOfferService = () => {
-    closeModal(); // Close the modal
-    navigate('/offer-service'); // Navigate to OfferService page
-  };
+  const [role, setRole] = useState("");
 
   return (
     <div>
@@ -33,14 +24,16 @@ export default function Body() {
           <img src={Group36} alt="Image" />
         </div>
         <div className="right">
-          <h2 className="text-right">Manage your Inventory/Warehouse for your Business efficiently and get frequent Analysis of Merchandise</h2>
+          <h2 className="text-right">Welcome to Ethnicize <br/>An India Post Initiative Connecting NRIs to the vibrant essence of local Indian markets</h2>
           <div className="button_container">
-            <button className="right_button" onClick={handleLoginClick}>Login</button>
+            <button className="role-button" data-role="customer" onClick={handleLoginClick}>Login for Customers</button>
+            <button className="role-button" data-role="merchants" onClick={handleLoginClick}>Login for Merchants</button>
+            <button className="role-button" data-role="management" onClick={handleLoginClick}>Login for Management</button>
             {isModalOpen && (
-               <div className="modal-overlay">
+              <div className="modal-overlay">
                 <div className="modal">
-               <button className="close-modal" onClick={closeModal}>×</button>
-                  <Login />
+                  <button className="close-modal" onClick={closeModal}>×</button>
+                  <Login role={role}/>
                 </div>
               </div>
              )}

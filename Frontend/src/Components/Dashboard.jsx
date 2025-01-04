@@ -7,31 +7,47 @@ import { useNavigate } from "react-router-dom";
 
 ChartJS.register(BarElement,CategoryScale,LinearScale,ArcElement, Tooltip, Legend);
 
-export default function Dashboard({ isLoggedIn, user }) {
+export default function Dashboard(){
   
   const [products,setProducts]=useState([]);
   const [loading,setLoading]=useState(true);
   const [message,setMessage]=useState("");
+  const [isProfile,setProfile]=useState("");
+  const [loadingProfile,setLoadingProfile]=useState(true);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProfileAndProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products"); 
-        const data = await response.json();
-        setProducts(data);
+        const response = await fetch("http://localhost:5000/auth/dashboard", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        const profileInfo = await response.json();
+        setProfile(profileInfo.userName);  // Set the user's name (optional)
+        console.log("Profile data:", profileInfo.userName);
+        
+        // Set the products (merchandise) returned by the backend
+        setProducts(profileInfo.merchandise);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching product:", error);
+        console.error("Error fetching profile or products:", error);
         setLoading(false);
       }
     };
-
-    fetchProduct();
-  },[]);
+  
+    fetchProfileAndProducts();
+  }, []);
+  
 
   useEffect(()=>{
     if(loading) setMessage("Loading....");
-    else if(products.length===0) setMessage(<>No products to display,click to <a href="/addproduct">add</a></>);
+    else if(products.length===0) setMessage(<>No products to display,click to <a href="/dashboard/addproduct">add</a></>);
     else setMessage("");
   },[loading,products]);
 
@@ -120,13 +136,14 @@ export default function Dashboard({ isLoggedIn, user }) {
   const navigate = useNavigate();
   
   const handleSubmit=()=>{
-   navigate("/addproduct");
+   navigate("/Merchant/addproduct");
   };
 
 
   return (
     <>
-    <h3 style={{marginLeft:"90px",color:"rgba(102, 102, 102, 1)"}}>Welcome Username!, Manage the Merchandise of Company</h3>
+    {isProfile?(<>
+      <h3 style={{marginLeft:"90px",color:"rgba(102, 102, 102, 1)"}}>Welcome {isProfile}!, Manage the Merchandise of Company</h3>
     <div className='panel'>
       <div className='stock'>
         <h6 style={{color:"#666"}}>Orders Requested for dispatch-E-commerce</h6>
@@ -183,10 +200,13 @@ export default function Dashboard({ isLoggedIn, user }) {
         <h4>{message}</h4>
         {products.slice(0,5).map((product) => (
         <div className="product-card" key={product.id}>
-          <img src={product.image} alt={product.title} className="product-image" />
-          <h3 className="product-title">{product.title}</h3>
-          <p className="product-price">${product.price}</p>
-          <button className="add-to-cart">Add to Cart</button>
+          <img src={product.image} alt={product.name} className="product-image" />
+          <h3 className="product-title">{product.name}</h3>
+          <p className="product-price">{product.marketprice}</p>
+          <p className="product-price">{product.category}</p>
+          <p className="product-price">{product.subcategory}</p>
+          <p className="product-price">{product.description}</p>
+          <p className="product-price">Available:{product.totalQuantity}</p>
         </div>
       ))}
       </div>
@@ -211,7 +231,10 @@ export default function Dashboard({ isLoggedIn, user }) {
 
 
     </div>
-
+    </>):(<>
+    <div>Complete your profile to continue</div>
+    </>
+    )}
     </>
   );
 }
