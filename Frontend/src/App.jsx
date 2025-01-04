@@ -10,6 +10,10 @@ import ManagementPage from './pages/ManagementPage';
 import Home from './pages/homepage';
 import MerchantDashboardPage from './pages/MerchantDashboardPage';
 import ProfilePage from './Components/Profile';
+import ProductDescription from './Components/ProductDescription';
+import CartPage from './Components/Cart';
+import Wishlist from './Components/Wishlist';
+import Orders from './Components/Order'
 
 import { 
   createBrowserRouter,
@@ -34,6 +38,22 @@ import {
   {
     path:'/Home',
     element:<CustomerPage/>
+  },
+  {
+    path:"/productdescription/:id",
+     element:<ProductDescription/>
+  },
+  {
+    path:"/cart",
+    element:<CartPage/>
+  },
+  {
+    path:"/wishlist",
+    element:<Wishlist/>
+  },
+  {
+    path:"/order",
+    element:<Orders/>
   },
   {
     path:'/Management',

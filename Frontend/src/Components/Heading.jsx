@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import logo from '../assets/ETHNICIZE_LOGO.png';  
 import cart from '../assets/icons8-cart-64.png';
 import { Link } from 'react-router-dom'; 
-//import { useCart } from "./CartContext.jsx"; 
+import { useCart } from "./CartContext.jsx"; 
 
 const Heading = () => {
- // const { cartNumbers } = useCart();
+  const { cartNumbers } = useCart();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [logoutcontainer, setlogoutcontainer] = useState(false);
 
@@ -80,7 +80,7 @@ const Heading = () => {
               <button className="relative flex items-center justify-center">
                 <img src={cart} alt="Cart" className="h-7 md:h-9 w-7 md:w-9 object-contain" /> {/* Reduced size for mobile */}
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.3 rounded-full">
-             
+                  {cartNumbers}
                 </span>
               </button>
             </Link>
